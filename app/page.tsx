@@ -1,8 +1,8 @@
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { SiGithub } from '@icons-pack/react-simple-icons';
-import { Mail } from 'lucide-react';
-import Link from 'next/link';
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -18,13 +18,13 @@ export default function Home() {
         <Link
           href="/dashboard"
           className={cn(
-            buttonVariants({ variant: 'outline', size: 'lg' }),
-            'font-bold'
+            buttonVariants({ variant: "outline", size: "lg" }),
+            "font-bold"
           )}
         >
           Dashboard
         </Link>
-        <Link href="#" className={cn(buttonVariants())}>
+        <Link href="/api/auth/signin" className={cn(buttonVariants())}>
           Login Simples
         </Link>
         <Link href="/login-server" className={cn(buttonVariants())}>
@@ -35,13 +35,22 @@ export default function Home() {
         </Link>
         <Link
           href="/login-github"
-          className={cn(buttonVariants(), 'flex items-center gap-3')}
+          className={cn(buttonVariants(), "flex items-center gap-3")}
         >
           <SiGithub className="w-4 h-4" />
           Login com Github
         </Link>
-        <Link href="/login-email" className={cn(buttonVariants(), 'flex items-center gap-3')}>
-          <Mail className='w-4 h-4' />
+        <Link
+          href="/login-google"
+          className={cn(buttonVariants(), "flex items-center gap-3")}
+        >
+          Login com Google
+        </Link>
+        <Link
+          href="/login-email"
+          className={cn(buttonVariants(), "flex items-center gap-3")}
+        >
+          <Mail className="w-4 h-4" />
           Login com Email
         </Link>
       </section>

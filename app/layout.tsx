@@ -1,19 +1,17 @@
-import type { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google';
-import './globals.css';
-import { cn } from '@/lib/utils';
-import { ThemeProvider } from '@/components/ui/theme-provider';
-import { ModeToggle } from '@/components/ui/mode-toggle';
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Next Auth - Workshop',
-  description: 'Workshop do Codante.io sobre autenticação no Next.js',
+  title: "Next Auth - Workshop",
+  description: "Workshop sobre autenticação no Next.js",
 };
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -21,25 +19,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-br" suppressHydrationWarning={true}>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased  relative',
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased  relative",
+          inter.className
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="absolute top-5 right-5">
-            <ModeToggle />
-          </div>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="absolute top-5 right-5">
+              <ModeToggle />
+            </div>
 
-          {children}
-        </ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
